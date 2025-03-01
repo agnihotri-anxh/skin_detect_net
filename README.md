@@ -7,7 +7,6 @@ This is a **Streamlit-based web application** that detects **Benign** or **Malig
 ## 🚀 Features
 ✅ Upload **multiple** skin lesion images.  
 ✅ Classifies images into **Benign** or **Malignant**.  
-✅ Uses a **pre-trained CNN model** for predictions.  
 ✅ Automatically downloads the model if missing.  
 ✅ Deployed on **Streamlit Cloud**.  
 
