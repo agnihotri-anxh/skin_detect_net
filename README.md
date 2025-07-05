@@ -1,4 +1,5 @@
-# 🩺 Skin Cancer Detection using Deep Learning
+# 🩺 Skin Cancer Detection using Deep Learning 
+## Live Demo: https://skindetectnet-jni9kt32utgljfk3miapbe.streamlit.app/ 
 
 This is a **Streamlit-based web application** that detects **Benign** or **Malignant** skin cancer from images using a **CNN model**.
 
