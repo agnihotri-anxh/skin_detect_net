@@ -331,20 +331,25 @@ def main_app():
             st.image(uploaded_image, caption="Uploaded Image", use_column_width=True)
         
         if st.button("🔍 Generate Medical Report", use_container_width=True, type="primary"):
-            if uploaded_image and model and name:
+            # Check if all required fields are filled
+            if not name or not name.strip():
+                st.error("❌ Please enter patient name")
+            elif not uploaded_image:
+                st.error("❌ Please upload an image")
+            elif not model:
+                st.error("❌ Model not loaded. Please check model file.")
+            else:
                 with st.spinner("🔬 Analyzing and generating report..."):
                     img = Image.open(uploaded_image)
                     class_label, confidence = predict_skin_cancer(img, model)
                     st.session_state['report_data'] = {
-                        'patient_info': {"name": name, "age": age, "gender": gender, "contact": contact, "notes": notes},
+                        'patient_info': {"name": name.strip(), "age": age, "gender": gender, "contact": contact, "notes": notes},
                         'img_bytes': uploaded_image.getvalue(),
                         'class_label': class_label,
                         'confidence': confidence
                     }
                     st.session_state['show_report'] = True
                     st.rerun()
-            else:
-                st.error("❌ Please fill all required fields and upload an image")
         st.markdown('</div>', unsafe_allow_html=True)
     
     else:
