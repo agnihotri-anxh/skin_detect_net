@@ -14,7 +14,7 @@ This is a **Streamlit-based web application** that detects **Benign** or **Malig
 ---
 
 ## 📂 Dataset & Model
-- **Dataset**: [Public skin cancer datasets.]([https://www.kaggle.com/datasets/bhaveshmittal/melanoma-cancer-dataset](https://skindetectnet-101.streamlit.app/))  
+- **Dataset**: [Public skin cancer datasets.](https://skindetectnet-101.streamlit.app/)
 - **Model**: A trained **Convolutional Neural Network (CNN)** using TensorFlow/Keras.  
 - **Download Model**:  
   🔗 **[Download from GitHub Releases](https://github.com/agnihotri-anxh/skin_detect_net/releases/download/v1.0/skin_cancer_cnn1.h5)**  
