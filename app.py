@@ -15,10 +15,7 @@ st.set_page_config(
 
 # Load model
 @st.cache_resource
-import os
-import tensorflow as tf
-import requests
-import streamlit as st
+
 
 @st.cache_resource
 def load_model():
