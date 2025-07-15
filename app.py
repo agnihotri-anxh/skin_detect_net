@@ -16,7 +16,17 @@ st.set_page_config(
 # Load model
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('skin_cancer_mobilenetv2.h5')
+    model_path = "skin_cancer_mobilenetv2.h5"
+    model_url = "https://github.com/yourusername/yourrepo/releases/download/v1.0/skin_cancer_mobilenetv2.h5"
+
+    if not os.path.exists(model_path):
+        print("Downloading model from GitHub release...")
+        r = requests.get(model_url, stream=True)
+        with open(model_path, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+    
+    return tf.keras.models.load_model(model_path)
 
 # Load user data
 def load_users():
