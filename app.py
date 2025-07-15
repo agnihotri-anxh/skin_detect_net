@@ -15,9 +15,6 @@ st.set_page_config(
 
 # Load model
 @st.cache_resource
-
-
-@st.cache_resource
 def load_model():
     model_path = "skin_cancer_mobilenetv2.h5"
     model_url = "https://github.com/agnihotri-anxh/skin_detect_net/releases/download/model/skin_cancer_mobilenetv2.h5"
