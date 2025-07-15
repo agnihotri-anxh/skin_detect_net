@@ -15,18 +15,31 @@ st.set_page_config(
 
 # Load model
 @st.cache_resource
+import os
+import tensorflow as tf
+import requests
+import streamlit as st
+
+@st.cache_resource
 def load_model():
     model_path = "skin_cancer_mobilenetv2.h5"
-    model_url = "https://github.com/agnihotri-anxh/skin_detect_net/releases/download/Model_files/skin_cancer_mobilenetv2.h5"
-    
+    model_url = "https://github.com/agnihotri-anxh/skin_detect_net/releases/download/model/skin_cancer_mobilenetv2.h5"
+
     if not os.path.exists(model_path):
-        print("Downloading model from GitHub release...")
-        r = requests.get(model_url, stream=True)
-        with open(model_path, 'wb') as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                f.write(chunk)
-    
+        try:
+            st.info("Model not found locally. Attempting to download...")
+            r = requests.get(model_url, stream=True, timeout=30)
+            r.raise_for_status()
+            with open(model_path, 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
+            st.success("✅ Model downloaded successfully.")
+        except Exception as e:
+            st.error(f"❌ Failed to download model: {e}")
+            st.stop()  # Stop Streamlit app
+
     return tf.keras.models.load_model(model_path)
+
 
 # Load user data
 def load_users():
