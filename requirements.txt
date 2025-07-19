@@ -8,4 +8,4 @@ protobuf==3.19.6
 tensorflow==2.10.0
 keras
 setuptools
-
+tqdm
