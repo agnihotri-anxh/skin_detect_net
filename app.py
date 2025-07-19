@@ -198,7 +198,7 @@ if st.session_state.current_page == 'input':
             
             st.session_state.report_data = report_data
             st.session_state.current_page = 'report'
-            st.rerun()
+            st.experimental_rerun()
         else:
             st.error("Please fill all required fields and upload an image.")
 
@@ -256,7 +256,7 @@ elif st.session_state.current_page == 'report':
     with col1:
         if st.button("New Analysis", use_container_width=True):
             st.session_state.current_page = 'input'
-            st.rerun()
+            st.experimental_rerun()
     with col2:
         if st.button("Print Report", use_container_width=True):
             st.info("Print functionality would be implemented here") 
