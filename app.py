@@ -5,6 +5,11 @@ import numpy as np
 import json
 from datetime import datetime
 import os
+<<<<<<< HEAD
+import requests
+from tqdm import tqdm
+=======
+>>>>>>> 656710712b645629ba27f934d75caaef19caf003
 
 # Page config
 st.set_page_config(
@@ -13,6 +18,34 @@ st.set_page_config(
     layout="wide"
 )
 
+<<<<<<< HEAD
+MODEL_PATH = 'skin_cancer_mobilenetv2.h5'
+MODEL_URL = 'https://github.com/agnihotri-anxh/skin_detect_net/releases/download/Model_files/skin_cancer_mobilenetv2.h5'
+
+def download_model_from_github(url, output_path):
+    response = requests.get(url, stream=True)
+    total_size = int(response.headers.get('content-length', 0))
+    block_size = 1024
+    with open(output_path, 'wb') as file, tqdm(
+        desc=output_path,
+        total=total_size,
+        unit='iB',
+        unit_scale=True,
+    ) as bar:
+        for data in response.iter_content(block_size):
+            file.write(data)
+            bar.update(len(data))
+
+def ensure_model():
+    if not os.path.exists(MODEL_PATH):
+        st.info("Model file not found. Downloading from GitHub Releases...")
+        download_model_from_github(MODEL_URL, MODEL_PATH)
+    return tf.keras.models.load_model(MODEL_PATH)
+
+@st.cache_resource
+def load_model():
+    return ensure_model()
+=======
 # Load model
 @st.cache_resource
 def load_model():
@@ -34,6 +67,7 @@ def load_model():
 
     return tf.keras.models.load_model(model_path)
 
+>>>>>>> 656710712b645629ba27f934d75caaef19caf003
 
 # Load user data
 def load_users():
@@ -229,4 +263,8 @@ elif st.session_state.current_page == 'report':
             st.rerun()
     with col2:
         if st.button("Print Report", use_container_width=True):
+<<<<<<< HEAD
             st.info("Print functionality would be implemented here") 
+=======
+            st.info("Print functionality would be implemented here") 
+>>>>>>> 656710712b645629ba27f934d75caaef19caf003
